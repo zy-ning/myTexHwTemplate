@@ -1,0 +1,194 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+% \usepackage[UTF8, scheme = plain]{ctex}
+\usepackage{minted}
+\usepackage{diagbox}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage[mocha]{catppuccin}
+
+\tcbuselibrary{skins}
+\tcbuselibrary{minted}
+\usemintedstyle{catppuccin-mocha}
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\textcolor{ctpLavender}{Zhiyuan Ning}}
+\chead{\textcolor{ctpMauve}{\hmwkClass:\quad\hmwkTitle}}
+\rhead{\textcolor{ctpLavender}{\firstxmark}}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+
+\setlength\parindent{0pt}
+
+% omit underful hbox warning
+\hbadness=10000
+
+% tcb code block
+\tcbset{
+    listing engine=minted,
+    boxrule=0.1mm,
+    colback=ctpMantle,
+    colframe=red!30!blue!75!ctpCrust!80!,
+    listing only,
+    left=5mm,
+    enhanced,
+    overlay={\begin{tcbclipinterior}\fill[red!20!blue!20!ctpCrust!60!] (frame.south west) rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}},
+    minted language=gas,
+    minted options={
+        fontsize=\small,
+        breaklines,
+        autogobble,
+        linenos,
+        numbersep=3mm}
+}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{\textcolor{ctpFlamingo}{Problem \arabic{homeworkProblemCounter}}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework\ \textbf{1}}
+\newcommand{\hmwkDueDate}{{Oct 0, 2000}}
+\newcommand{\hmwkClass}{ECE0000J}
+\newcommand{\hmwkClassTime}{}
+\newcommand{\hmwkClassInstructor}{Professor \textcolor{ctpBlue}{XX}}
+\newcommand{\hmwkAuthorName}{\textbf{\textcolor{ctpLavender}{XXX}}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\Huge \textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\textcolor{ctpSapphire}{Due\ on\ \hmwkDueDate\ at 4:00pm}}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\sol}{\textbf{\large \textcolor{ctpTeal}{Solution}}}
+
+% Alias for keywords
+\newcommand{\keyword}[1]{\textbf{\textcolor{ctpLavender}{#1}}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+% set the enumerate label to (1)
+\setlist[enumerate,1]{label=(\arabic*)}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+% ==========================================
+% EXERCISE 1
+% ==========================================
+\begin{homeworkProblem}
+
+
+\sol
+
+\end{homeworkProblem}
+
+\end{document}
